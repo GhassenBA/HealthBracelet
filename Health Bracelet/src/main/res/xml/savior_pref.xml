@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Savior">
+        <EditTextPreference
+
+            android:key="savior_number"
+            android:title="@string/savior_number"
+            android:summary="@string/savior_summary"
+            android:defaultValue="911" />
+        <SwitchPreference
+            android:enabled="true"
+            android:key="call_enabled"
+
+            android:title="@string/call" />
+        <RingtonePreference
+            android:key="call_message"
+            android:ringtoneType="all"
+
+            android:title="@string/call_message" />
+
+
+        <SwitchPreference
+
+            android:key="message_enabled"
+            android:enabled="true"
+            android:title="@string/message" />
+
+        <EditTextPreference
+            android:key="message_text"
+            android:enabled="true"
+            android:title="Message Text"
+            android:defaultValue="@string/help"
+            android:inputType="textAutoComplete" />
+
+
+    </PreferenceCategory>
+</PreferenceScreen>

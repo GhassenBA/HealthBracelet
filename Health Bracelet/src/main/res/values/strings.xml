@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Health Bracelet</string>
+    <string name="heartrate">108</string>
+    <string name="action_settings">Settings</string>
+    <string name="savior_summary">Who to contact in case of emergency</string>
+    <string name="savior_number">Savior number</string>
+    <string name="alert_summary">Choose the savior and alert methods</string>
+    <string name="alert_title">Alert Options</string>
+    <string name="call">Call</string>
+    <string name="call_message">Call message</string>
+    <string name="message">Message</string>
+    <string name="help">Help me!</string>
+    <string name="action_about">About</string>
+
+
+</resources>
