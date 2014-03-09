@@ -1,4 +1,12 @@
-package com.netlinks.healthbracelet.view;/*
+package com.netlinks.healthbracelet.view;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.View;
+/*
  * Copyright (C) 2014 Health Bracelet Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,15 +22,9 @@ package com.netlinks.healthbracelet.view;/*
  * limitations under the License.
  */
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.util.AttributeSet;
-import android.view.View;
-
 /**
- * Created by Saif Chaouachi on 2/21/14
+ * @author Saif Chaouachi(ch.saiff35@gmail.com)
+ *         2/21/14
  */
 public class HeartRateView extends View {
     public HeartRateView(Context context) {

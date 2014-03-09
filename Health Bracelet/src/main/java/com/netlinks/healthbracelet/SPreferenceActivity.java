@@ -1,3 +1,14 @@
+package com.netlinks.healthbracelet;
+
+import android.os.Bundle;
+import android.preference.PreferenceActivity;
+import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
+
+import com.netlinks.healthbracelet.fragment.SPreferenceFragment;
+
+import java.util.List;
+
 /*
  * Copyright (C) 2014 Health Bracelet Team
  *
@@ -14,21 +25,9 @@
  * limitations under the License.
  */
 
-
-
-package com.netlinks.healthbracelet;
-
-import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
-
-import com.netlinks.healthbracelet.fragment.SPreferenceFragment;
-
-import java.util.List;
-
 /**
- * Created by Saif Chaouachi on 1/25/14.
+ * @author Saif Chaouachi(ch.saiff35@gmail.com)
+ *         1/25/14
  */
 public class SPreferenceActivity extends PreferenceActivity {
     private static final String TAG = "PreferenceActivity";

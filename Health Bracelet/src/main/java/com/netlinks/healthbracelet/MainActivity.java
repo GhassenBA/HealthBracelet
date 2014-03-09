@@ -1,3 +1,18 @@
+package com.netlinks.healthbracelet;
+
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.netlinks.healthbracelet.fragment.MainFragment;
+import com.netlinks.healthbracelet.service.HeartRateService;
+
 /*
  * Copyright (C) 2014 Health Bracelet Team
  *
@@ -14,26 +29,15 @@
  * limitations under the License.
  */
 
-package com.netlinks.healthbracelet;
-
-import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import com.netlinks.healthbracelet.fragment.MainFragment;
-import com.netlinks.healthbracelet.service.HeartRateService;
-
 /**
- * Created by Saif Chaouachi on 1/28/14.
+ * @author Saif Chaouachi(ch.saiff35@gmail.com)
+ *         1/28/14
  */
+
+
 public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
+
     // Reference to the service
     private HeartRateService serviceRef;
     // Handles the connection between the service and activity
@@ -63,7 +67,7 @@ public class MainActivity extends Activity {
                     .commit();
         }
         //TODO move this
-      //  startService(new Intent(this, HeartRateService.class));
+        startService(new Intent(this, HeartRateService.class));
 
     }
 
@@ -102,7 +106,6 @@ public class MainActivity extends Activity {
             startActivity(i);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
