@@ -6,9 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.netlinks.healthbracelet.fragment.MainFragment;
 import com.netlinks.healthbracelet.service.HeartRateService;
@@ -38,6 +43,9 @@ import com.netlinks.healthbracelet.service.HeartRateService;
 public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
 
+    public static final int HEARTRATE_RECEIVED = 1;
+
+    private UpdateHeartRateThread updateThread;
     // Reference to the service
     private HeartRateService serviceRef;
     // Handles the connection between the service and activity
@@ -53,6 +61,7 @@ public class MainActivity extends Activity {
             serviceRef = null;
         }
     };
+    TextView heartRateView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +78,22 @@ public class MainActivity extends Activity {
         //TODO move this
         startService(new Intent(this, HeartRateService.class));
 
+        heartRateView = (TextView) findViewById(R.id.heartRateTextView);
+        updateThread = new UpdateHeartRateThread();
+        updateThread.start();
     }
+
+    private final Handler mhandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            heartRateView = (TextView) findViewById(R.id.heartRateTextView);
+
+            float heartRate = (float) msg.obj;
+                    heartRateView.setText(String.valueOf(heartRate));
+
+
+        }
+    };
 
     @Override
     protected void onResume() {
@@ -78,11 +102,17 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, HeartRateService.class);
         bindService(intent, mConnection,
                 Context.BIND_AUTO_CREATE);
+        updateThread = new UpdateHeartRateThread();
+        updateThread.start();
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+
+        updateThread.stop();
+
         // UnBind to the service
         unbindService(mConnection);
     }
@@ -109,5 +139,23 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class UpdateHeartRateThread extends Thread {
+        public UpdateHeartRateThread() {
+
+        }
+
+        public void run(){
+            while(true) {
+                try {
+                    this.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (serviceRef != null) {
+                    mhandler.obtainMessage(1,serviceRef.getHeartRate()).sendToTarget();
+                }
+            }
+        }
+    }
 
 }
